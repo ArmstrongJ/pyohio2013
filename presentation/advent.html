@@ -1,0 +1,251 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>A Text Adventure in Python</title>
+<!-- metadata -->
+<meta name="generator" content="Slide Show (S9)" />
+<meta name="version" content="S5 1.1" />
+<meta name="author" content="Jeffrey B. Armstrong" />
+<meta name="company" content="Approximatrix, LLC" />
+<!-- configuration parameters -->
+<meta name="defaultView" content="slideshow" />
+<meta name="controlVis" content="hidden" />
+<!-- style sheet links -->
+<link rel="stylesheet" href="ui/approx/slides.css" type="text/css" media="projection" id="slideProj" />
+<link rel="stylesheet" href="ui/default/outline.css" type="text/css" media="screen" id="outlineStyle" />
+<link rel="stylesheet" href="ui/default/print.css" type="text/css" media="print" id="slidePrint" />
+<link rel="stylesheet" href="ui/default/opera.css" type="text/css" media="projection" id="operaFix" />
+
+<!-- S5 JS -->
+<script src="ui/default/slides.js" type="text/javascript"></script>
+
+<!-- ASCIIMathML -->
+<script src="ui/custom/ASCIIMathML.js" type="text/javascript"></script>
+
+</head>
+<body>
+
+<div class="layout">
+<div id="controls"><!-- DO NOT EDIT --></div>
+<div id="currentSlide"><!-- DO NOT EDIT --></div>
+<div id="header"></div>
+<div id="footer">
+<h1>PyOhio</h1>
+<h2>27 July 2013</h2>
+</div>
+
+</div>
+
+
+<div class="presentation">
+
+<div class="slide">
+<h1>A Text Adventure in Python</h1>
+<h2>Exploring the Standard Library</h2>
+<h3>Jeffrey B. Armstrong</h3>
+<h4>Approximatrix, LLC</h4>
+</div>
+
+<div class='slide '>
+
+<!-- _S9SLIDE_ -->
+<h1>Introduction</h1>
+<p><img src="zork.png" style="border:0px; float:right; height:14em;" alt="" /></p>
+<ul>
+	<li>Build a text adventure
+	<ul>
+		<li>with only the standard library</li>
+	</ul></li>
+	<li>Basic steps to start a game</li>
+	<li>Introduce some fun Python modules</li>
+</ul>
+
+</div>
+<div class='slide '>
+<!-- _S9SLIDE_ -->
+<h1>History</h1>
+<p><img src="disks.png" style="border:0px; float:right; height:9em;" alt="" /></p>
+<ul>
+	<li>Text Adventures/Interactive Fiction
+	<ul>
+		<li>Popular when graphics were a &#8220;problem&#8221;</li>
+		<li>Multiple commercial entities</li>
+	</ul></li>
+	<li>Still enjoy &#8220;cult&#8221; following</li>
+</ul>
+
+</div>
+<div class='slide '>
+<!-- _S9SLIDE_ -->
+<h1>Follow Along!</h1>
+<p><a href="https://github.com/ArmstrongJ/pyohio2013">https://github.com/ArmstrongJ/pyohio2013</a></p>
+
+</div>
+<div class='slide '>
+<!-- _S9SLIDE_ -->
+<h1>Necessities</h1>
+<ul>
+	<li>Command prompt</li>
+	<li>Locations to visit</li>
+	<li>Game file(s) describing our world</li>
+	<li>Puzzles, items, characters, etc.</li>
+</ul>
+
+</div>
+<div class='slide '>
+<!-- _S9SLIDE_ -->
+<h1>Command Prompts</h1>
+<ul>
+	<li><strong>cmd</strong> module
+	<ul>
+		<li>Provides &#8220;support for line-oriented command interpreters&#8221;</li>
+		<li>Absurdly simple to implement</li>
+		<li>Might lack some power</li>
+	</ul></li>
+</ul>
+
+</div>
+<div class='slide '>
+<!-- _S9SLIDE_ -->
+<h1>Locations</h1>
+<ul>
+	<li><strong>Room</strong> class
+	<ul>
+		<li>Needs an id, name, description</li>
+		<li>List of connected rooms</li>
+		<li>List of items in the room</li>
+		<li>List of NPCs in the room</li>
+	</ul></li>
+</ul>
+
+</div>
+<div class='slide '>
+<!-- _S9SLIDE_ -->
+<h1>Persistent Rooms</h1>
+<ul>
+	<li><strong>pickle</strong>
+	<ul>
+		<li>Lets us serialize our rooms easily</li>
+		<li>Not editable</li>
+	</ul></li>
+	<li>Plain ol&#8217; text files
+	<ul>
+		<li>Hand-editable</li>
+		<li>Implies some arbitrary formatting</li>
+	</ul></li>
+</ul>
+
+</div>
+<div class='slide '>
+<!-- _S9SLIDE_ -->
+<h1>Persistent Rooms</h1>
+<ul>
+	<li><strong>json</strong> module
+	<ul>
+		<li>Allows &#8220;serializing&#8221; our rooms</li>
+		<li>Hand-editable</li>
+		<li>Expandable via adding fields</li>
+	</ul></li>
+</ul>
+
+</div>
+<div class='slide '>
+<!-- _S9SLIDE_ -->
+<h1>Text Wrapping</h1>
+<ul>
+	<li><strong>textwrap</strong>
+	<ul>
+		<li>Automagically handles our wrapping needs</li>
+	</ul></li>
+</ul>
+
+</div>
+<div class='slide '>
+<!-- _S9SLIDE_ -->
+<h1>Data Files</h1>
+<ul>
+	<li><strong>sqlite3</strong> module
+	<ul>
+		<li>Simple SQL database</li>
+		<li>Store the entire game in a single file</li>
+	</ul></li>
+</ul>
+
+</div>
+<div class='slide '>
+<!-- _S9SLIDE_ -->
+<h1>Data Files</h1>
+<ul>
+	<li><strong>tempfile</strong> module
+	<ul>
+		<li>Make a temporary, working copy of the game</li>
+	</ul></li>
+	<li><strong>shutil</strong> module
+	<ul>
+		<li>For copying the clean game file to a temp file</li>
+		<li>For creating our saves</li>
+	</ul></li>
+</ul>
+
+</div>
+<div class='slide '>
+<!-- _S9SLIDE_ -->
+<h1>What&#8217;s Missing?</h1>
+<ul>
+	<li>Status Bar
+	<ul>
+		<li><strong>curses</strong> module is the key</li>
+	</ul></li>
+	<li>NPCs</li>
+	<li>Puzzles</li>
+	<li>&#8220;Advanced&#8221; text parsing</li>
+</ul>
+
+</div>
+<div class='slide '>
+<!-- _S9SLIDE_ -->
+<h1>Where We&#8217;ve Been</h1>
+<ul>
+	<li><strong>cmd</strong></li>
+	<li><strong>json</strong></li>
+	<li><strong>textwrap</strong></li>
+	<li><strong>sqlite3</strong></li>
+	<li><strong>tempfile</strong></li>
+	<li><strong>shutil</strong></li>
+</ul>
+
+</div>
+<div class='slide '>
+<!-- _S9SLIDE_ -->
+<h1>Want More?</h1>
+<ul>
+	<li>https://github.com/ArmstrongJ/
+	<ul>
+		<li>An older, actual adventure named <strong>robotadventure</strong></li>
+	</ul></li>
+	<li>http://www.pyweek.org/
+	<ul>
+		<li>A reason to write your own</li>
+	</ul></li>
+	<li>http://www.ifcomp.org/
+	<ul>
+		<li>If you think yours is worthy&#8230;</li>
+	</ul></li>
+</ul>
+
+</div>
+<div class='slide '>
+<!-- _S9SLIDE_ -->
+<h1>Thanks!</h1>
+<p style="text-align:center;"><a href="https://twitter.com/fortranjeff">@fortranjeff</a> on Twitter</p>
+<p style="text-align:center;"><a href="http://jeff.rainbow-100.com">http://jeff.rainbow-100.com</a></p>
+<p style="text-align:center;"><strong>jeff@rainbow-100.com</strong></p></div>
+
+
+</div>
+
+</body>
+</html>
