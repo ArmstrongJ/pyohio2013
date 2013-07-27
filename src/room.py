@@ -1,10 +1,10 @@
 import json
 import sqlite3
 
-def get_room(id):
+def get_room(id, dbfile):
     ret = None
     
-    con = sqlite3.connect("game.db")
+    con = sqlite3.connect(dbfile)
     
     for row in con.execute("select json from rooms where id=?",(id,)):
     
@@ -14,6 +14,8 @@ def get_room(id):
         ret = Room(**d)
         break
         
+    con.close()
+    
     return ret
 
 class Room():

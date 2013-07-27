@@ -1,12 +1,17 @@
 import cmd
 from room import get_room
 import textwrap
+import shutil
+import tempfile
 
 class Game(cmd.Cmd):
     def __init__(self):
         cmd.Cmd.__init__(self)
         
-        self.loc = get_room(1)
+        self.dbfile = tempfile.mktemp()
+        shutil.copyfile("game.db", self.dbfile)
+        
+        self.loc = get_room(1, self.dbfile)
         self.look()
         
     def move(self, dir):
@@ -14,8 +19,11 @@ class Game(cmd.Cmd):
         if newroom is None:
             print("you can't go that way")
         else:
-            self.loc = get_room(newroom)
+            self.loc = get_room(newroom, self.dbfile)
             self.look()
+            
+        if newroom==13:
+            exit()
         
     def look(self):
         print(self.loc.name)
@@ -52,6 +60,11 @@ class Game(cmd.Cmd):
         """Leaves the game"""
         print("Thank you for playing")
         return True
+
+    def do_save(self, args):
+        """Saves the game"""
+        shutil.copyfile(self.dbfile, args)
+        print("The game was saved to {0}".format(args))
         
 if __name__ == "__main__":
     g = Game()
