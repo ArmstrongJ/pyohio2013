@@ -66,6 +66,9 @@ class Game(cmd.Cmd):
         shutil.copyfile(self.dbfile, args)
         print("The game was saved to {0}".format(args))
         
+    def do_xyzzy(self, args):
+        print('''A hollow voice says, "This isnt Fortran..."''')
+        
 if __name__ == "__main__":
     g = Game()
     g.cmdloop()
